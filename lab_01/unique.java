@@ -1,9 +1,7 @@
 import java.util.*;
 import java.io.*;
-public class unique
-{
-   public static void main(String[] args) throws Exception
-   {
+ public class unique{
+   public static void main(String[] args) throws Exception{
       Scanner fileScanner = new Scanner(new File("one.txt"));
        fileScanner.useDelimiter("[^A-Za-z0-9]");
        ArrayList<String> words = new ArrayList<String>();
