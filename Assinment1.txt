@@ -1,0 +1,16 @@
+Assignment 1: Create an inverted index from a collection of documents.
+
+Collection: https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00001.txt
+            https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00002.txt
+            https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00003.txt
+
+Tool Dependancy:
+
+- Use any stopword list available external
+- Use stemmer API if available 
+
+From a collection, build an inverted index and store if for later use. Think of efficiency for searching on inverted index. 
+
+
+
+- Use your software design skills  like, OOP concepts, code reusability (refactoring), documentation and unit tests.
