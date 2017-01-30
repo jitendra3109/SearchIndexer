@@ -1,0 +1,8 @@
+#Inverted Index
+Create an Inverted Index for the given collection. Make decision for all the trade-offs like data structure for term-index,    posting list. Sorted or not etc. Store the index in the file for later use. Extra points for index compression.
+
+The collection needs to be used is: 50k documents of Hindi in the same way. Next week or later I will also pass the English   collection for you. The collection to be downloaded is: http://users.dsic.upv.es/grupos/nle/clinss.html in Section corpus:   The file is "hindi.12.tar.gz.gpg" and the passphrase is "clinss2012fire" If the download speed is small, do it later (night) and continue to work on small dataset during today's lab.
+
+## Note: if you have difficulty in handling gpg file, search on how to decrypt gpg file in your OS.
+
+Hindi Stemmer in Java is here: http://members.unine.ch/jacques.savoy/clef/HindiStemmerLight.java.txt and you can search for "hindi stemmer in Python" for python variants.
