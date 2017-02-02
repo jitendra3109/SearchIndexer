@@ -1,16 +1,32 @@
-package com.dlj.ir.analysis.hi;
-
+import java.io.*;
+import java.util.*;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+public class file2{
+  public static void main(String[] args) throws Exception{
+    File file=new File("/home/jsrathore/IR_System_LAB/IR_Lab_01/wordCount.txt.");
 
-/**
- * Hindi light stemmer- removes number, gender and case suffixes from nouns and adjectives 
- * Done by Ljiljana Dolamic (University of Neuchatel, www.unine.ch/info/clef/)
- *         
- * @author Ljiljana Dolamic. Email: ljiljana.dolamic@unine.ch
- */
-public class HindiStemmerLight{
+    FileInputStream fileInputStream = new FileInputStream(file);
+    HindiStemmerLight obj =new HindiStemmerLight();
+    BufferedWriter out= new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Steaming.txt.",true), "UTF-8"));
+    BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"));
+    String s;
+    while((s = bufferedReader.readLine()) != null){
+      /*System.out.println(obj.stem(s));*/
+      ArrayList<String> wordArrayList = new ArrayList<String>();
+
+       wordArrayList.add(obj.stem(s));
+    }
+    for(String str: wordArrayList) {
+       out.write(str);
+     }    
+  }
+}
+
+
+
+class HindiStemmerLight{
 
   /**
    * A cache of words and their stems
@@ -28,7 +44,7 @@ public class HindiStemmerLight{
   public HindiStemmerLight() {
   }
 
-  public String stem(String word) {
+  public String stem(String word) {      
     String result = cache.get(word);
 
     if (result != null)
@@ -41,13 +57,12 @@ public class HindiStemmerLight{
     sb.append(word);
 
     /* remove the case endings from nouns and adjectives */
-    remove_suffix(sb);
-      
+    remove_suffix(sb);   
     
 
     result = sb.toString();
     cache.put(word, result);
-
+     
     return result;
   }
 
@@ -144,3 +159,5 @@ public class HindiStemmerLight{
     return;
   }
 }
+
+
