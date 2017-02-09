@@ -3,7 +3,7 @@ import java.util.*;
 
 
 public class invert{
-	
+
     public static Set<String> set =null;/*Storing the document address*/
     public static HashMap<String,HashSet<String>>invert_index  = new HashMap<String,HashSet<String>>();
     public static Stemmer stm=new Stemmer(); /*object of Stemmering class*/
@@ -12,15 +12,15 @@ public class invert{
 
 	  public static void main(String[] args) throws Exception {		
      try{
-		    File folder = new File("/home/jsroyal/Desktop/hindi");
+		      
+          File folder = new File("/home/jsroyal/Desktop/hindi");
           File[] listOfFiles = folder.listFiles();        
-       /*BufferedWriter out= new BufferedWriter(new OutputStreamWriter(new FileOutputStream("wordCount.txt"), "UTF-8"));*/
+          /*BufferedWriter out= new BufferedWriter(new OutputStreamWriter(new FileOutputStream("wordCount.txt"), "UTF-8"));*/
         
                    
-      String[] stopwords = { "से", "हैं", "को", "पर", "इस", "होता", "कि", "जो", "कर", "मे", "गया", "करने", "किया", "लिये", "अपने", "ने", "बनी", "नहीं", "तो", "ही", "या", "एवं", "दिया", "हो", "इसका", "था", "द्वारा", "हुआ", "तक", "साथ", "करना", "वाले", "बाद", "लिए", "आप", "कुछ", "सकते", "किसी", "ये", "इसके", "सबसे", "इसमें", "थे", "दो", "होने", "वह", "वे", "करते", "बहुत", "कहा", "वर्ग", "कई", "करें", "होती", "अपनी", "उनके", "थी", "यदि", "हुई", "जा", "ना", "इसे", "कहते", "जब", "होते", "कोई", "हुए", "व", "न", "अभी", "जैसे", "सभी", "करता", "उनकी", "तरह", "उस", "आदि", "कुल", "एस", "रहा", "इसकी", "सकता", "रहे", "उनका", "इसी", "रखें", "अपना", "पे", "उसके"};/*St*/
-            
+        String[] stopwords = { "से", "हैं", "को", "पर", "इस", "होता", "कि", "जो", "कर", "मे", "गया", "करने", "किया", "लिये", "अपने", "ने", "बनी", "नहीं", "तो", "ही", "या", "एवं", "दिया", "हो", "इसका", "था", "द्वारा", "हुआ", "तक", "साथ", "करना", "वाले", "बाद", "लिए", "आप", "कुछ", "सकते", "किसी", "ये", "इसके", "सबसे", "इसमें", "थे", "दो", "होने", "वह", "वे", "करते", "बहुत", "कहा", "वर्ग", "कई", "करें", "होती", "अपनी", "उनके", "थी", "यदि", "हुई", "जा", "ना", "इसे", "कहते", "जब", "होते", "कोई", "हुए", "व", "न", "अभी", "जैसे", "सभी", "करता", "उनकी", "तरह", "उस", "आदि", "कुल", "एस", "रहा", "इसकी", "सकता", "रहे", "उनका", "इसी", "रखें", "अपना", "पे", "उसके"};/*St*/
+             
         set=new HashSet<String>(Arrays.asList(stopwords));/*Convert array to has set*/  
-
         for(File file : listOfFiles){              
               /*System.out.println(file); */ 
               filer(file);
@@ -28,26 +28,26 @@ public class invert{
         }catch(Exception e){
         	System.out.println(e);
         }
-  }
+    }
 
   public static void filer(File file) throws Exception{
-  BufferedWriter outfile= new BufferedWriter(new 
-       OutputStreamWriter(new FileOutputStream("invert_50.txt"), "UTF-8"));
+       BufferedWriter outfile= new BufferedWriter(new 
+         OutputStreamWriter(new FileOutputStream("invert_50.txt"), "UTF-8"));
          inputfilename= new FileInputStream(file); 
          bufferedReader= new BufferedReader(new InputStreamReader(inputfilename, "UTF-8"));
                String s;
-            while((s = bufferedReader.readLine()) != null){             
-              //System.out.println("File name"+file.getName());
-                s = s.replaceAll("\\<.*?>"," ");
-                if(s.contains("॥") || s.contains(":")|| s.contains("।")|| 
-                s.contains(",")|| s.contains("!")|| s.contains("?")){
-                s=s.replace("॥"," ");
-                s=s.replace(":"," ");
-                s=s.replace("।"," ");
-                s=s.replace(","," ");
-                s=s.replace("!"," ");
-                s=s.replace("?"," ");
-                }                                                   
+              while((s = bufferedReader.readLine()) != null){             
+                //System.out.println("File name"+file.getName());
+                  s = s.replaceAll("\\<.*?>"," ");
+                  if(s.contains("॥") || s.contains(":")|| s.contains("।")|| 
+                  s.contains(",")|| s.contains("!")|| s.contains("?")){
+                  s=s.replace("॥"," ");
+                  s=s.replace(":"," ");
+                  s=s.replace("।"," ");
+                  s=s.replace(","," ");
+                  s=s.replace("!"," ");
+                  s=s.replace("?"," ");
+                  }                                                   
             StringTokenizer st = new StringTokenizer(s," ");/*String tokenzer*/
                 while (st.hasMoreTokens()){         
                 String str=(st.nextToken()).toString();
@@ -73,17 +73,15 @@ public class invert{
                 }
               
 
-            for (Map.Entry m:invert_index.entrySet()) {
-               /*System.out.println(m.getKey()+" : "+ m.getValue());*/
+            /*for (Map.Entry m:invert_index.entrySet()) {
+               System.out.println(m.getKey()+" : "+ m.getValue());
                outfile.write(m.getKey()+" : "+ m.getValue() + "\n");
-            }
-
+            }*/
+            FileOutputStream outfile = new FileOutputStream("test1");
+            ObjectOutputStream outobject = new ObjectOutputStream(outfile);
+            outobject.writeObject(invert_index);          
     } 
 }
-
-
-
-
 
 class Stemmer {
       static int stem(String st) {
