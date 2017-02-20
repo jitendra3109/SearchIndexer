@@ -1,6 +1,6 @@
-Assignment 1: Create an inverted index from a collection of documents.
+Assignment 1: Create an inverted index from a collection of documents.Till now you will work on  three documnets.Given below address.
 
-Collection: https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00001.txt
+Collection: https://github.com/jsroyal/IR_System_LAB/				blob/master/lab_01/hindi-document-00001.txt
             https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00002.txt
             https://github.com/jsroyal/IR_System_LAB/blob/master/lab_01/hindi-document-00003.txt
 

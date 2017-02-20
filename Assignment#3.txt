@@ -1,0 +1,12 @@
+#Assignment 3: Using inverted index calculated TF-IDF (Term frequency-Inverted  Document frequency).
+
+TF: Find the term frequency of in documents.
+
+IDF :Find the IDF for every doucments N/n{N:Number of total documents in corpus and n:Number of total document which contains this term}
+
+
+Now calculate Term waitage of document{
+	Formula :
+	W = TF x Log(N/n)
+}
+Store in object file will use later assignments.
