@@ -8,19 +8,23 @@ import java.util.*;
  * @author jsroyal
  */
 public class Search_Engine {
+
     public static void main(String[] args) throws Exception {
+        ArrayList<String> FileName = new ArrayList<>();
         File TfIdf = new File("tfidfHashMap");
         if (!TfIdf.exists()) {
             File Objectbinaryfile = new File("InvertedIndexHashMap");
-            int filesize = 0;
+            int filesize=2025;
             if (!Objectbinaryfile.exists()) {
                 HashMap<String, ArrayList<Node>> invert_index = new HashMap<>();
-                File folder = new File("/home/jsroyal/Desktop/Corpus/hindi/");
+                File folder = new File("/home/jsroyal/NetBeansProjects/Search_Engine/bengal");
                 File[] ListOfFiles = folder.listFiles();
+
                 int documentid = 1;
                 for (File file : ListOfFiles) {
+                    FileName.add(file.getName());
                     //System.out.println(file);
-                    filesize++;
+                    //filesize++;
                     Inverted_index(file, documentid, invert_index);
                     /*sending file and Id of document,hashmap*/
                     System.out.println(documentid);/*track the document Passing*/
@@ -59,6 +63,7 @@ public class Search_Engine {
                     Map.Entry<String, ArrayList<Node>> entry = TFIDF.next();
                     ArrayList<Node> Id_frequency = entry.getValue();
                     ArrayList<Nodew> Id_idf = new ArrayList();
+                    
                     for (int i = 0; i < Id_frequency.size(); i++) {
                         Id_idf.add(new Nodew(Id_frequency.get(i).docId, Id_frequency.get(i).termFrequncy * Math.log(filesize / Id_frequency.size())));
                     }
@@ -75,8 +80,7 @@ public class Search_Engine {
 
             ObjectInputStream fileReadTfIdf = new ObjectInputStream(new BufferedInputStream(new FileInputStream(TfIdf)));
             HashMap<String, ArrayList<Nodew>> TF_IDF = (HashMap) fileReadTfIdf.readObject();/*reading object of hash map*/
-            fileReadTfIdf.close();
-            HashMap<String, ArrayList<Nodew>> NormalizationMap = new HashMap<>();
+            fileReadTfIdf.close();            
             System.out.println("  TF IDF ");
             System.out.println("Key    : Document id :    WTF");
             Iterator<Map.Entry<String, ArrayList<Nodew>>> weight = TF_IDF.entrySet().iterator();
@@ -149,7 +153,7 @@ public class Search_Engine {
     static void Inverted_index(File file, int documentid, HashMap<String, ArrayList<Node>> invert_index) throws Exception {
         /*object of stop words class*/
         StopWords stopWords = new StopWords();
-        /*object of Stemming class*/        
+        /*object of Stemming class*/
         Stemmer stem = new Stemmer();
         BufferedReader bufferedReader = null;
         FileInputStream inputfilename = null;
@@ -160,14 +164,14 @@ public class Search_Engine {
 
         while ((s = bufferedReader.readLine()) != null) {
             s = s.replaceAll("\\<.*?>", " ");/*removing tag */
-            if (s.contains("॥") || s.contains(":") || s.contains("।") || s.contains(",") || s.contains("!") || s.contains("?") || s.contains(".")) {
+            if (s.contains("-") || s.contains("॥") || s.contains(":") || s.contains("।") || s.contains(",") || s.contains("!") || s.contains("?") || s.contains(".")) {
                 s = s.replace("॥", " ");
                 s = s.replace(":", " ");
                 s = s.replace("।", " ");
                 s = s.replace(",", " ");
                 s = s.replace("!", " ");
                 s = s.replace("?", " ");
-                s = s.replace("?", " ");
+                s = s.replace("-", " ");
                 s = s.replace(".", " ");
             }
             /*removing punction marks*/
@@ -179,7 +183,7 @@ public class Search_Engine {
                 if (!stopWords.stopWordsSetEnglish.contains(str)) {/*Remove stop words*/
 
                     String word = stem.stripAffixes(str);/*stemming the words*/
-                     /*after the stemming*/
+ /*after the stemming*/
                     ArrayList<Node> arrayList = invert_index.get(word);
                     if (!invert_index.containsKey(word)) {
                         arrayList = new ArrayList<>();
