@@ -1,3 +1,5 @@
+
+/*Commented code will help you more details how implemented*/
 package search_engine;
 
 import java.io.*;

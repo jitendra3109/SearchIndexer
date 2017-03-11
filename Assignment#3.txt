@@ -9,4 +9,5 @@ Now calculate Term waitage of document{
 	Formula :
 	W = TF x Log(N/n)
 }
+
 Store in object file will use later assignments.
