@@ -1,5 +1,8 @@
-# Search Ingine : Information Retrival System. 
+## Search Engine : Information Retrival System. 
 
-## There is one by one assignments to create this system.
+This repo contents three assigments which is implemented.
+- Created word frequency of more than three file.
+- Created inverted index (Posting list)
+- Implement TF-IDF model 
 
-## In the Hindi Corpus folder the collection of hindi documents are available in .tar extations and you can used it.
+More details find in repo files.
